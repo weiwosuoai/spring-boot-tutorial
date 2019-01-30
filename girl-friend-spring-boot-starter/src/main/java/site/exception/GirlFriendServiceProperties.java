@@ -3,7 +3,7 @@ package site.exception;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author jiangbing(江冰)
+ * @author www.excpetion.site(exception 教程网)
  * @date 2019/1/30
  * @time 11:22
  * @discription
@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.girlfriend")
 public class GirlFriendServiceProperties {
 
+    /** 默认输出 */
     private String message = "Hi, good morning !";
 
     public String getMessage() {

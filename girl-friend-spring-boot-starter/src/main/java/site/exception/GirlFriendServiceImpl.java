@@ -3,7 +3,7 @@ package site.exception;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author jiangbing(江冰)
+ * @author www.excpetion.site(exception 教程网)
  * @date 2019/1/30
  * @time 11:07
  * @discription
