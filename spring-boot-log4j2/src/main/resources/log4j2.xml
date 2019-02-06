@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 日志级别优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j2能够自动检测修改的配置,并加载，此参数设置间隔秒数-->
 <Configuration status="WARN" monitorInterval="30">
+    <!--<Properties>-->
+        <!--<Property name="PID">????</Property>-->
+        <!--<Property name="APP_NAME">test</Property>-->
+        <!--<Property name="LOG_FILE">/app/logs/${APP_NAME}/${APP_NAME}.{%d{yyyy-MM-dd}}</Property>-->
+        <!--&lt;!&ndash;<Property scope="context" name="appName" value="qms" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<Property name="LOG_FILE" value="/app/logs/${appName}/${appName}.%d{yyyy-MM-dd}"/>&ndash;&gt;-->
+        <!--&lt;!&ndash; 定义日志的输出格式 &ndash;&gt;-->
+        <!--<Property name="LOG_PATTERN">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:PID}}{magenta}-->
+            <!--%clr{-&#45;&#45;}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%xwEx-->
+        <!--</Property>-->
+    <!--</Properties>-->
+
     <Properties>
-        <Property name="PID">????</Property>
-        <Property name="LOG_PATTERN">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{%5p} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n%xwEx</Property>
+        <Property name="PID">PID</Property>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_PATTERN">%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
     </Properties>
+
     <Appenders>
+        <param name="Encoding" value="UTF-8" />
         <Console name="Console" target="SYSTEM_OUT" follow="true">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
+        <RollingFile name="RollingFile" fileName="logs/console.log"
+                     filePattern="log/$${date:yyyy-MM}/dts-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+        </RollingFile>
+        <RollingFile name="RollingFileWarn" fileName="logs/warn.log"
+                     filePattern="error/$${date:yyyy-MM}/warn-%d{MM-dd-yyyy}-%i.log.gz">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+        </RollingFile>
+        <RollingFile name="RollingFileError" fileName="logs/error.log"
+                     filePattern="error/$${date:yyyy-MM}/dts-%d{MM-dd-yyyy}-%i.log.gz">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
+        </RollingFile>
     </Appenders>
+
     <Loggers>
-        <Root level="info">
+        <!-- 过滤掉 spring 和 mybatis 的一些无用的 DEBUG 信息-->
+        <!--<logger name="org.springframework" level="INFO"></logger>-->
+        <!--<logger name="org.mybatis" level="INFO"></logger>-->
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="RollingFileWarn"/>
+            <AppenderRef ref="RollingFileError"/>
         </Root>
     </Loggers>
 </Configuration>
