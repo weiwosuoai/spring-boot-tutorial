@@ -35,12 +35,6 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
-		<!-- lombok 可以简化臃肿的 java 代码。需要安装 Lombok plugin -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
 		<!-- 用于日志切面中，以 json 格式打印出入参 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

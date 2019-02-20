@@ -1,10 +1,11 @@
 package site.exception.springbootaopwebrequest.aspect;
 
 import com.alibaba.fastjson.JSONObject;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,8 +20,9 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @Aspect
 @Component
-@Slf4j
 public class WebLogAspect {
+
+    private final static Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
 
     /** 以 controller 包下定义的所有请求为切入点 */
     @Pointcut("execution(public * site.exception.springbootaopwebrequest.controller..*.*(..))")
@@ -38,12 +40,12 @@ public class WebLogAspect {
         HttpServletRequest request = attributes.getRequest();
 
         // 打印请求相关参数
-        log.info("========================================== Start ==========================================");
-        log.info("URL            : {}", request.getRequestURL().toString());
-        log.info("HTTP Method    : {}", request.getMethod());
-        log.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
-        log.info("IP             : {}", request.getRemoteAddr());
-        log.info("Request Args   : {}", JSONObject.toJSONString(joinPoint.getArgs()));
+        logger.info("========================================== Start ==========================================");
+        logger.info("URL            : {}", request.getRequestURL().toString());
+        logger.info("HTTP Method    : {}", request.getMethod());
+        logger.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        logger.info("IP             : {}", request.getRemoteAddr());
+        logger.info("Request Args   : {}", JSONObject.toJSONString(joinPoint.getArgs()));
     }
 
     /**
@@ -52,9 +54,9 @@ public class WebLogAspect {
      */
     @AfterReturning("webLog()")
     public void afterReturning() throws Throwable {
-        log.info("=========================================== End ===========================================");
+        logger.info("=========================================== End ===========================================");
         // 每个请求之间空一行
-        log.info("");
+        logger.info("");
     }
 
     /**
@@ -68,9 +70,9 @@ public class WebLogAspect {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
-        log.info("Response Args  : {}", JSONObject.toJSONString(result));
+        logger.info("Response Args  : {}", JSONObject.toJSONString(result));
         // 执行耗时
-        log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
+        logger.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
         return result;
     }
 
