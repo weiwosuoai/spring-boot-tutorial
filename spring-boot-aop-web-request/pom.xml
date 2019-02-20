@@ -41,6 +41,7 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
+		<!-- 用于日志切面中，以 json 格式打印出入参 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
