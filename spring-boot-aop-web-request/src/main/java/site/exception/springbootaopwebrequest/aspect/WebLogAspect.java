@@ -24,14 +24,14 @@ public class WebLogAspect {
 
     /** 以 controller 包下定义的所有请求为切入点 */
     @Pointcut("execution(public * site.exception.springbootaopwebrequest.controller..*.*(..))")
-    public void webRequestLog() {}
+    public void webLog() {}
 
     /**
      * 在切点之前织入
      * @param joinPoint
      * @throws Throwable
      */
-    @Before("webRequestLog()")
+    @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         // 开始打印请求日志
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -50,7 +50,7 @@ public class WebLogAspect {
      * 在切点之后织入
      * @throws Throwable
      */
-    @AfterReturning("webRequestLog()")
+    @AfterReturning("webLog()")
     public void afterReturning() throws Throwable {
         log.info("=========================================== End ===========================================");
         // 每个请求之间空一行
@@ -63,7 +63,7 @@ public class WebLogAspect {
      * @return
      * @throws Throwable
      */
-    @Around("webRequestLog()")
+    @Around("webLog()")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
