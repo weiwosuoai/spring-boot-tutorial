@@ -1,7 +1,5 @@
 package site.exception.springbootaopwebrequest.entity;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,7 +9,6 @@ import java.util.Date;
  * @time 21:00
  * @discription
  **/
-@Data
 public class User implements Serializable {
     /**
      * 用户名
@@ -25,6 +22,28 @@ public class User implements Serializable {
      * 创建时间
      */
     private Date createTime;
-    private Long userGroupId;
-    private String staffNo;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

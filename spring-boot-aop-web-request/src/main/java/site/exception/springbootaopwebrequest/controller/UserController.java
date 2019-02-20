@@ -1,6 +1,7 @@
 package site.exception.springbootaopwebrequest.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +15,9 @@ import site.exception.springbootaopwebrequest.entity.User;
  * @discription
  **/
 @RestController
-@Slf4j
 public class UserController {
+
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     /**
      * 定义一个创建用户的接口
@@ -24,7 +26,7 @@ public class UserController {
      */
     @PostMapping("/user")
     public User createUser(@RequestBody User user) {
-        log.info("create user ...");
+        logger.info("create user ...");
         return user;
     }
 
@@ -35,7 +37,7 @@ public class UserController {
      */
     @PostMapping("/user/{username}")
     public User createUser(@PathVariable("username") String username, @RequestBody User user) {
-        log.info("create user ...");
+        logger.info("create user ...");
         return user;
     }
 }

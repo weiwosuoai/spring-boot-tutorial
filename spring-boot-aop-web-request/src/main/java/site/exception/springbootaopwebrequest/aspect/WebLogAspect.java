@@ -41,10 +41,15 @@ public class WebLogAspect {
 
         // 打印请求相关参数
         logger.info("========================================== Start ==========================================");
+        // 打印请求 url
         logger.info("URL            : {}", request.getRequestURL().toString());
+        // 打印 Http method
         logger.info("HTTP Method    : {}", request.getMethod());
+        // 打印调用 controller 的全路径以及执行方法
         logger.info("Class Method   : {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        // 打印请求的 IP
         logger.info("IP             : {}", request.getRemoteAddr());
+        // 打印请求入参
         logger.info("Request Args   : {}", JSONObject.toJSONString(joinPoint.getArgs()));
     }
 
@@ -52,8 +57,8 @@ public class WebLogAspect {
      * 在切点之后织入
      * @throws Throwable
      */
-    @AfterReturning("webLog()")
-    public void afterReturning() throws Throwable {
+    @After("webLog()")
+    public void doAfter() throws Throwable {
         logger.info("=========================================== End ===========================================");
         // 每个请求之间空一行
         logger.info("");
@@ -66,7 +71,7 @@ public class WebLogAspect {
      * @throws Throwable
      */
     @Around("webLog()")
-    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
