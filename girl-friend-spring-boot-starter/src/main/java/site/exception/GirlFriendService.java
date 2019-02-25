@@ -1,7 +1,7 @@
 package site.exception;
 
 /**
- * @author www.excpetion.site(exception 教程网)
+ * @author www.exception.site(exception 教程网)
  * @date 2019/1/30
  * @time 11:07
  * @discription
