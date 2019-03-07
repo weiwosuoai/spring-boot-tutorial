@@ -1,6 +1,7 @@
 package site.exception.springbootaopwebrequest.aspect;
 
 import com.google.gson.Gson;
+import org.apache.commons.lang.SystemUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -22,7 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class WebLogAspect {
 
-    private final static Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
+    private final static Logger logger         = LoggerFactory.getLogger(WebLogAspect.class);
+    private static final String LINE_SEPARATOR = SystemUtils.LINE_SEPARATOR;
 
     /** 以 controller 包下定义的所有请求为切入点 */
     @Pointcut("execution(public * site.exception.springbootaopwebrequest.controller..*.*(..))")
@@ -59,9 +61,8 @@ public class WebLogAspect {
      */
     @After("webLog()")
     public void doAfter() throws Throwable {
-        logger.info("=========================================== End ===========================================");
-        // 每个请求之间空一行
-        logger.info("");
+        // 接口结束后换行，方便分割查看
+        logger.info("=========================================== End ===========================================" + LINE_SEPARATOR);
     }
 
     /**

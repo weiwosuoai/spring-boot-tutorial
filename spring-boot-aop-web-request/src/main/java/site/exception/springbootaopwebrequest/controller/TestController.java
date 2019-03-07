@@ -40,6 +40,16 @@ public class TestController {
     }
 
     /**
+     * GET 方式接口测试
+     * @return
+     */
+    @GetMapping("/test")
+    public String test() {
+        logger.info("testGet ...");
+        return "success";
+    }
+
+    /**
      * 单文件上传接口测试
      * @return
      */
