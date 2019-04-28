@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author www.exception.site (exception 教程网)
- * @date 2019/2/16
- * @time 21:00
+ * @author 犬小哈 （微信号：小哈学Java）
+ * @site www.exception.site
+ * @date 2019/2/12
+ * @time 下午9:19
  * @discription
  **/
 public class User implements Serializable {

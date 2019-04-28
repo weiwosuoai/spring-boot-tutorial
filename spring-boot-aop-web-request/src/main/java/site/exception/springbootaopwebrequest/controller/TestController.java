@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import site.exception.springbootaopwebrequest.aspect.WebLog;
 import site.exception.springbootaopwebrequest.entity.User;
 
 /**
- * @author www.exception.site (exception 教程网)
- * @date 2019/2/16
- * @time 21:03
+ * @author 犬小哈 （微信号：小哈学Java）
+ * @site www.exception.site
+ * @date 2019/2/12
+ * @time 下午9:19
  * @discription
  **/
 @RestController
@@ -22,9 +24,10 @@ public class TestController {
      * @param user
      * @return
      */
-    @PostMapping("/user")
-    public User testPost(@RequestBody User user) {
-        logger.info("testPost ...");
+    @PostMapping("/user/login")
+    @WebLog(description = "请求了用户登录接口")
+    public User userLogin(@RequestBody User user) {
+        logger.info("user login ...");
         return user;
     }
 
@@ -32,10 +35,10 @@ public class TestController {
      * GET 方式接口测试
      * @return
      */
-    @GetMapping("/user")
-    public String testGet(@RequestParam("username") String username,
-                          @RequestParam("password") String password) {
-        logger.info("testGet ...");
+    @GetMapping("/user/{id}")
+    @WebLog(description = "请求了用户登录接口")
+    public String findUserInfo(@PathVariable("id") String userId) {
+        logger.info("find user info ...");
         return "success";
     }
 
