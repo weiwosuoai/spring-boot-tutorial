@@ -5,7 +5,7 @@
 ---
 
 <p align="center">
- ★★★ 如果此教程有帮助到您, <b>Star</b> 一下吧, 您还可以访问 :fire: <a href="https://www.exception.site/springboot">《Docker 实战学习教程》</a> :fire: 来阅读它. 谢谢啦! ★★★
+ ★★★ 如果此教程有帮助到您, <b>Star</b> 一下吧, 您还可以访问 :fire: <a href="https://www.exception.site/springboot">《Spring 2.x 学习实战教程》</a> :fire: 来阅读它. 谢谢啦! ★★★
 </p>
 
 ---
