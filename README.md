@@ -16,16 +16,19 @@
 
 ### 基础篇
 
-- [一、入门篇](https://www.exception.site/springboot/spring-boot-tutorial)
+- [入门篇](https://www.exception.site/springboot/spring-boot-tutorial)
 
 ### 快速整合篇
 
-- [二、Spring Boot 整合邮件发送功能](https://www.exception.site/springboot/spring-boots-send-mail)
+- [Spring Boot 整合邮件发送功能](https://www.exception.site/springboot/spring-boots-send-mail)
+- [Spring Boot 7 行代码快速生成 Excel 文件(演示代码在测试包内)](https://www.exception.site/essay/how-to-create-excel-by-seven-line-code)
+- [Spring Boot 如何通过 Freemark 优雅地生成那些花里胡哨的复杂样式 Excel 文件？(演示代码在测试包内)](https://www.exception.site/essay/how-to-create-complex-style-excel-with-freemark)
+
 
 ### 进阶篇
 
-- [三、Spring Boot 自定义注解，AOP 切面统一打印出入参请求日志](https://www.exception.site/springboot/spring-boot-aop-web-request)
-- [四、Spring Boot 自定义 Starter 组件](https://www.exception.site/springboot/spring-boot-custom-starter)
+- [Spring Boot 自定义注解，AOP 切面统一打印出入参请求日志](https://www.exception.site/springboot/spring-boot-aop-web-request)
+- [Spring Boot 自定义 Starter 组件](https://www.exception.site/springboot/spring-boot-custom-starter)
 
 
 ## 小哈的微信公众号，欢迎关注
