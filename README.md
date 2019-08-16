@@ -21,6 +21,7 @@
 ### 快速整合篇
 
 - [Spring Boot 整合邮件发送功能](https://www.exception.site/springboot/spring-boots-send-mail)
+- [Spring Boot 整合集成消息中间件 Kafka](https://www.exception.site/springboot/spring-boot2-kafka)
 - [Spring Boot 7 行代码快速生成 Excel 文件(演示代码在测试包内)](https://www.exception.site/essay/how-to-create-excel-by-seven-line-code)
 - [Spring Boot 如何通过 Freemark 优雅地生成那些花里胡哨的复杂样式 Excel 文件？(演示代码在测试包内)](https://www.exception.site/essay/how-to-create-complex-style-excel-with-freemark)
 
